@@ -38,11 +38,9 @@ Resources:
             RestApiId:
               Ref: APIGateway
       Policies:
-        -Statement:
-          Action:
-            - "dynamodb:GetItem"
-            - "dynamodb:UpdateItem"
-          Resource: !GetAtt
-            - MyDynamoDBTable
-            - Arn
-          Effect: Allow
+        - Version: "2012-10-17"
+          Statement:
+            - Effect: Allow
+              Action:
+                - "dynamodb:GetItem"
+                - "dynamodb:UpdateItem"
