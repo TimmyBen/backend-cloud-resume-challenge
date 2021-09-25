@@ -1,6 +1,6 @@
 name: CI
 on:
-   push:
+  push:
     paths:
       - "lambda_code/*"
       - "template.yml"
