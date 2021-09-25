@@ -1,3 +1,3 @@
 # backend-cloud-resume-challenge
 Repository for Cloud Resume challenge backend code 
-using AWS Lambda
+using AWS Lambda and other Cloud services
