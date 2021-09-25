@@ -38,14 +38,11 @@ Resources:
             RestApiId:
               Ref: APIGateway
       Policies:
-        - PolicyName: DynamoDB-ReadWrite
-          PolicyDocument:
-            Version: 2012-10-17
-            Statement:
-              - Action:
-                  - "dynamodb:GetItem"
-                  - "dynamodb:UpdateItem"
-                Resource: !GetAtt
-                  - MyDynamoDBTable
-                  - Arn
-                Effect: Allow
+        -Statement:
+          Action:
+            - "dynamodb:GetItem"
+            - "dynamodb:UpdateItem"
+          Resource: !GetAtt
+            - MyDynamoDBTable
+            - Arn
+          Effect: Allow
