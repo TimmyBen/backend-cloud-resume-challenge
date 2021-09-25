@@ -2,9 +2,10 @@
 import boto3
 import json
 import decimal
+import os
 
 dynamodb = boto3.resource('dynamodb')
-table = dynamo.Table(os.environ['tablename'])
+table = dynamodb.Table(os.environ['tablename'])
 
 
 def result(status, message):
@@ -18,9 +19,8 @@ def result(status, message):
 
 
 def lambda_handler(event, context):
-    table = dynamodb.Table('RequestTable2')
     response = table.update_item(
-        Key={'RequestID': 5},
+        Key={'id': 1},
         ExpressionAttributeValues={
             ':val': 1
         },

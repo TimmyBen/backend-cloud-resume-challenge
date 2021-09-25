@@ -3,14 +3,10 @@ Transform: AWS::Serverless-2016-10-31
 Description: Template for Cloud Resume Challenge
 
 Resources:
-  APIGateway:
-    Type: AWS::Serverless::Api
+  HttpApi:
+    Type: AWS::Serverless::HttpApi
     Properties:
-      StageName: Prod
-      Cors:
-        AllowMethods: "'GET, POST, OPTIONS'"
-        AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
-        AllowOrigin: "'*'"
+      CorsConfiguration: "true"
 
   MyDynamoDBTable:
     Type: AWS::Serverless::SimpleTable
@@ -30,13 +26,13 @@ Resources:
         Variables:
           tablename: !Ref MyDynamoDBTable
       Events:
-        Countapi:
-          Type: Api
+        ExplicitApi: # warning: creates a public endpoint
+          Type: HttpApi
           Properties:
-            Path: /count
-            Method: POST
-            RestApiId:
-              Ref: APIGateway
+            ApiId: !Ref HttpApi
+            Method: GET
+            Path: /path
+
       Policies:
         - Version: "2012-10-17"
           Statement:
