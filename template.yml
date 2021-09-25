@@ -6,7 +6,11 @@ Resources:
   HttpApi:
     Type: AWS::Serverless::HttpApi
     Properties:
-      CorsConfiguration: "true"
+      CorsConfiguration:
+        AllowOrigins: "'*'"
+        AllowMethods: "'GET, POST, OPTIONS'"
+        AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+        AllowCredentials: true
 
   MyDynamoDBTable:
     Type: AWS::Serverless::SimpleTable
